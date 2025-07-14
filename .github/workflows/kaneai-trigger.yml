@@ -17,11 +17,11 @@ jobs:
         run: |
           echo "Triggering KaneAI CI test run"
           curl -u "${{ secrets.LT_USERNAME }}:${{ secrets.LT_ACCESS_KEY }}" \
-          -X POST https://test-manager-api.lambdatest.com/api/v1/ata/v1/hyperexecute\
+          -X POST https://test-manager-api.lambdatest.com/api/v1/test/v1/hyperexecute \
           -H "Content-Type: application/json" \
           -d '{
+            "test_run_id": "01JZSHN86KY75PZ53T0ACQ7M4T",
             "concurrency": 2,
-            "title": "KaneAI GitHub Trigger",
-            "region": "us",
-            "replaced_url": "https://your-staging-app.com"
+            "title": "KaneAI GitHub Trigger"
           }'
+
