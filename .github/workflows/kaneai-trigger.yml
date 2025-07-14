@@ -20,7 +20,7 @@ jobs:
           -X POST https://test-manager-api.lambdatest.com/api/v1/test/v1/hyperexecute \
           -H "Content-Type: application/json" \
           -d '{
-            "test_run_id": "01JZSHN86KY75PZ53T0ACQ7M4T",
+            "test_run_id": "01K047XKQMZT8A4YMSH7B1RJQQ",
             "concurrency": 2,
             "title": "KaneAI GitHub Trigger"
           }'
