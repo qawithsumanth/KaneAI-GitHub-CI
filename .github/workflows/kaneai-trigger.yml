@@ -1,26 +1,25 @@
-name: Trigger KaneAI Test Run
+
+    name: Trigger KaneAI Test Run
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   run-kaneai-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
       - name: Trigger KaneAI test using LambdaTest API
         run: |
-          curl -u "${{ secrets.LT_USERNAME }}:${{ secrets.LT_ACCESS_KEY }}" \
-          -X POST https://api.lambdatest.com/testmanager/api/v1/test-runs/01JZSHN86KY75PZ53T0ACQ7M4T/execute \
-          -H "Content-Type: application/json" \
-          -d '{
-            "concurrency": 2,
-            "title": "KaneAI GitHub Trigger",
-            "region": "us",
-            "replaced_url": "https://your-staging-app.com"
-          }'
-
+          echo "Triggering KaneAI CI test run"
+          response=$(curl --location "https://test-manager-api.lambdatest.com/api/v1/ata/v1/hyperexecute" \
+          --header "Content-Type: application/json" \
+          --header "Authorization: Basic ${{ secrets.LT_AUTH_BASE64 }}" \
+          --data '{
+            "test_run_id": "01JZSHN86KY75PZ53T0ACQ7M4T",
+            "concurrency": 1,
+            "title": "GitHub CI Trigger"
+          }')
+          echo "Response: $response"
