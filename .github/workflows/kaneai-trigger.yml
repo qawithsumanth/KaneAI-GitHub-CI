@@ -15,7 +15,7 @@ jobs:
       - name: Trigger KaneAI test using LambdaTest API
         run: |
           curl -u "${{ secrets.LT_USERNAME }}:${{ secrets.LT_ACCESS_KEY }}" \
-          -X POST https://api.lambdatest.com/automation/api/v1/abc123XYZ/execute \
+          -X POST https://api.lambdatest.com/automation/api/v1/01JZSHN86KY75PZ53T0ACQ7M4T/execute \
           -H "Content-Type: application/json" \
           -d '{
             "concurrency": 2,
@@ -23,3 +23,4 @@ jobs:
             "region": "us",
             "replaced_url": "https://your-staging-app.com"
           }'
+
