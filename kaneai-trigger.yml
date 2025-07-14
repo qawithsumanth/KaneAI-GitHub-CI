@@ -1,0 +1,26 @@
+
+name: Trigger KaneAI Test Run
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-kaneai-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Trigger KaneAI test using LambdaTest API
+        run: |
+          curl -u "${{ secrets.LT_USERNAME }}:${{ secrets.LT_ACCESS_KEY }}" \
+          -X POST https://api.lambdatest.com/automation/api/v1/abc123XYZ/execute \
+          -H "Content-Type: application/json" \
+          -d '{
+            "concurrency": 2,
+            "title": "KaneAI GitHub Trigger",
+            "region": "us",
+            "replaced_url": "https://your-staging-app.com"
+          }'
