@@ -1,5 +1,4 @@
-
-    name: Trigger KaneAI Test Run
+name: Trigger KaneAI Test Run
 
 on:
   push:
